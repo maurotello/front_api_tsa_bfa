@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Form from './Form';
+import Form2 from './Form2';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <Form />
+    
+    <Form2 />
+    
+    
   </React.StrictMode>,
   document.getElementById('root')
 );

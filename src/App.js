@@ -3,12 +3,10 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App mt-20">
       <div>
-        <h1>Hola Mundo!</h1>
-        <p>Bienvenidos a los primeros pasos con React</p>
+        <h1 className = "text-4xl font-bold text-indigo-600" >With Tailwind CSS</h1>
       </div>
-      
     </div>
   );
 }
