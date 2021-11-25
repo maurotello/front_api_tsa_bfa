@@ -1,8 +1,9 @@
 import './App.css';
 import CryptoJS from 'crypto-js';
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
+import Dropzone from 'react-dropzone'
 
-const Form = () => {
+const FormVerifier = () => {
 
     const [name, setName] = useState("");
     const [dni, setDni] = useState("");
@@ -72,6 +73,10 @@ const Form = () => {
         //    this.state.selectedFile.name,
         //);
     }
+    const onDrop = (acceptedFiles) => {
+        console.log(acceptedFiles[0]);
+    }
+    const maxSize = 1048576;
         return (
             <div>
                 <div class="container mx-auto mt-20 flex w-full clear-both">
@@ -90,11 +95,21 @@ const Form = () => {
                             <input class="rounded text-black-500 form-input" type="text" name="name" onChange={ (e) => setName(e.target.value) } placeholder="Ingrese si nombre" />
                         </div>
                         <div class="block mb-4">
-                            <label for="file">
-                                File:
-                                
-                                <input class="rounded text-blackf-500" placeholder="Seleccione un archivo" in="file" name="file" type="file"  onChange={(e)=>{setArchivo(e.target.files[0])}} />
-                            </label>
+
+                            <Dropzone 
+                                onDrop={onDrop}
+                                accept="txt"
+                                minSize={0}
+                                maxSize={maxSize}    
+                                >
+                                {({getRootProps, getInputProps, isDragActive}) => (
+                                    <div {...getRootProps()}>
+                                        <input {...getInputProps()} />
+                                        {isDragActive ? "Drop it like it's hot!" : 'Click me or drag a file to upload!'}
+                                        
+                                    </div>
+                                )}
+                            </Dropzone>
                         </div>
                         <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Submit" />
                     </form>
@@ -105,4 +120,4 @@ const Form = () => {
             </div>
         )
 }
-export default Form;
+export default FormVerifier;
