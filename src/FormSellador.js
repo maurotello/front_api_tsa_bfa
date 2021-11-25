@@ -31,7 +31,7 @@ const FormSellador = () => {
         }
     };
   
-    const guardarDatos = async (e) => {
+    const guardarDatos = (e) => {
         e.preventDefault()
         console.log('objeto', archivo);
        
