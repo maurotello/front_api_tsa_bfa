@@ -1,7 +1,7 @@
 import './App.css';
 import CryptoJS from 'crypto-js';
 import React, { useState, Component } from 'react';
-import Dropzone from 'react-dropzone'
+import DropZone from 'react-dropzone'
 
 const FormVerifier = () => {
 
@@ -73,10 +73,6 @@ const FormVerifier = () => {
         //    this.state.selectedFile.name,
         //);
     }
-    const onDrop = (acceptedFiles) => {
-        console.log(acceptedFiles[0]);
-    }
-    const maxSize = 1048576;
         return (
             <div>
                 <div class="container mx-auto mt-20 flex w-full clear-both">
@@ -95,21 +91,7 @@ const FormVerifier = () => {
                             <input class="rounded text-black-500 form-input" type="text" name="name" onChange={ (e) => setName(e.target.value) } placeholder="Ingrese si nombre" />
                         </div>
                         <div class="block mb-4">
-
-                            <Dropzone 
-                                onDrop={onDrop}
-                                accept="txt"
-                                minSize={0}
-                                maxSize={maxSize}    
-                                >
-                                {({getRootProps, getInputProps, isDragActive}) => (
-                                    <div {...getRootProps()}>
-                                        <input {...getInputProps()} />
-                                        {isDragActive ? "Drop it like it's hot!" : 'Click me or drag a file to upload!'}
-                                        
-                                    </div>
-                                )}
-                            </Dropzone>
+                            <input class="rounded text-blackf-500" placeholder="Seleccione un archivo" in="file" name="file" type="file"  onChange={(e)=>{setArchivo(e.target.files[0])}} />
                         </div>
                         <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Submit" />
                     </form>
