@@ -13,7 +13,7 @@ const FormSellador = () => {
     
     const fileData = () => {
         if (this.state.selectedFile1) {
-            //console.log(this.state.selectedFile1);
+            console.log(this.state.selectedFile1);
             return (
                 <div>
                     <h2>File Details:</h2> 
@@ -33,30 +33,21 @@ const FormSellador = () => {
   
     const guardarDatos = (e) => {
         e.preventDefault()
-        console.log(archivo);
-
-        /*
-        if(!name.trim()){
-            console.log('esta vacio nombre')
-            return
-        }
-        
-        if(!dni.trim()){
-            console.log('esta vacio DNI')
-            return
-        }
-        */
+        console.log('objeto', archivo);
        
         let fileReader = new FileReader();
-        fileReader.readAsBinaryString(archivo);
-        fileReader.onload = function () {
-            console.log("Result: " + fileReader.result);
-        };
-        fileReader.onerror = function () {
-            console.log("Error: " + fileReader.error);
-        };
+        fileReader.addEventListener('loadend', function() {
+            /*
+             console.log(
+              'finish read content as ArrayBuffer, osea aca termina de leer y convertir el archivo a un buffer',
+              fileReader.result
+             )
+            */
+            let cryptoDataArray = CryptoJS.lib.WordArray.create(fileReader.result)
+            console.log('El hash como string finalmente es', CryptoJS.SHA256(cryptoDataArray).toString());
+        })
+        fileReader.readAsArrayBuffer(archivo)
 
-        console.log('SHA: ' + CryptoJS.SHA256(archivo));
 
         e.target.reset()
         setDni('')
