@@ -33,7 +33,7 @@ class FormSellador extends React.Component{
         let fileReader = new FileReader();
         fileReader.addEventListener('loadend', function() {
             let cryptoDataArray = CryptoJS.lib.WordArray.create(fileReader.result)
-            console.log('El hash es: ', CryptoJS.SHA256(cryptoDataArray).toString());
+            //console.log('El hash es: ', CryptoJS.SHA256(cryptoDataArray).toString());
 
             // Progressive Hashing en https://cryptojs.gitbook.io/docs/
             let sha256 = CryptoJS.algo.SHA256.create();
@@ -41,8 +41,7 @@ class FormSellador extends React.Component{
             sha256.update(dni);
             sha256.update(name);
             let hash = sha256.finalize();
-            
-            console.log('Hash Definitivo2: ', CryptoJS.SHA256(hash).toString());
+            console.log('Hash Definitivo1: ', hash.toString());
 
 
         })
