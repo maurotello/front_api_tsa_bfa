@@ -1,6 +1,6 @@
 import './App.css';
-import FormSellador from './FormSellador';
-import FormVerifier from './FormVerifier';
+import FormSealing from './Components/FormSealing';
+import FormVerifier from './Components/FormVerifier';
 
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <div class="grid grid-cols-2">
           <div>
             <h1 className = "text-4xl font-bold text-indigo-600" >Sellador</h1>
-            <FormSellador />
+            <FormSealing />
           </div>
           <div>
             <h1 className = "text-4xl font-bold text-indigo-600" >Verificador</h1>

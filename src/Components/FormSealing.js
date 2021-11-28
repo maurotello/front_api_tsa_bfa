@@ -3,7 +3,7 @@ import CryptoJS from 'crypto-js';
 import React, { useState } from 'react';
 import { defaultClassNames } from 'react-dropzone-uploader';
 
-class FormSellador extends React.Component{
+class FormSealing extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -24,17 +24,12 @@ class FormSellador extends React.Component{
     }
 
     handleSubmit(event) {
-        console.log(this.state.name);
-        console.log(this.state.dni);
         let dni = this.state.dni;
         let name = this.state.name;
-        //console.log(this.state.file);
 
         let fileReader = new FileReader();
         fileReader.addEventListener('loadend', function() {
             let cryptoDataArray = CryptoJS.lib.WordArray.create(fileReader.result)
-            //console.log('El hash es: ', CryptoJS.SHA256(cryptoDataArray).toString());
-
             // Progressive Hashing en https://cryptojs.gitbook.io/docs/
             let sha256 = CryptoJS.algo.SHA256.create();
             sha256.update(cryptoDataArray);
@@ -42,17 +37,10 @@ class FormSellador extends React.Component{
             sha256.update(name);
             let hash = sha256.finalize();
             console.log('Hash Definitivo1: ', hash.toString());
-
-
         })
         fileReader.readAsArrayBuffer(this.state.file)
-
         event.target.reset()
-
         event.preventDefault();
-    }
-    guardarDatos(){
-
     }
     render() {
         return(
@@ -117,68 +105,6 @@ class FormSellador extends React.Component{
             </div>
         );
     }
-    
-        // Este enlace es necesario para hacer que `this` funcione en el callback
-        //this.handleClick = this.handleClick.bind(this);
 }
 
-/*
-const FormSellador = () => {
-
-    const [name, setName] = useState("");
-    const [dni, setDni] = useState("");
-    const [archivo , setArchivo] = useState('');
-    
-    const handleChange = (e) => {
-    }
-    
-    const fileData = () => {
-        if (this.state.selectedFile1) {
-            return (
-                <div>
-                    <h2>File Details:</h2> 
-                    <p>File Name: {this.state.selectedFile1.name}</p>
-                    <p>File Type: {this.state.selectedFile1.type}</p>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <br />
-                    <h4>Seleccione un archivo y luego súbalo</h4>
-                </div>
-            );
-        }
-    };
-  
-    const guardarDatos = (e) => {
-        e.preventDefault()
-        console.log('objeto', archivo);
-       
-        let fileReader = new FileReader();
-        fileReader.addEventListener('loadend', function() {
-            let dni = getElementById('dni').value;
-            console.log(dni);
-            let cryptoDataArray = CryptoJS.lib.WordArray.create(fileReader.result)
-            console.log('El hash como string finalmente es', CryptoJS.SHA256(cryptoDataArray).toString());
-        })
-        fileReader.readAsArrayBuffer(archivo)
-
-        e.target.reset()
-        setDni('')
-        setName('')
-        setArchivo('')
-
-        console.log("SUBIENDO");
-        
-        //const formData = new FormData();
-        //formData.append(
-        //    "myFile",
-        //    this.state.selectedFile,
-        //    this.state.selectedFile.name,
-        //);
-    }
-        // return
-}
-*/
-export default FormSellador;
+export default FormSealing;
