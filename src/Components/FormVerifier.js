@@ -1,8 +1,8 @@
-import './App.css';
+import '../App.css';
 import CryptoJS from 'crypto-js';
 import React, { useState } from 'react';
 import { defaultClassNames } from 'react-dropzone-uploader';
-
+//redis:6379
 class FormVerifier extends React.Component{
     constructor(props) {
         super(props);

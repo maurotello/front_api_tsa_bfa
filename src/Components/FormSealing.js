@@ -1,4 +1,4 @@
-import './App.css';
+import '../App.css';
 import CryptoJS from 'crypto-js';
 import React, { useState } from 'react';
 import { defaultClassNames } from 'react-dropzone-uploader';
@@ -37,6 +37,24 @@ class FormSealing extends React.Component{
             sha256.update(name);
             let hash = sha256.finalize();
             console.log('Hash Definitivo1: ', hash.toString());
+            /*
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: 'React Hooks POST Request Example' })
+            };
+            fetch("https://localhost:3000/videos/1", requestOptions) 
+                .then( (response) => { 
+                    return response.json() 
+                })
+                .then((data) => { 
+                    console.log(data) 
+                });
+                .catch((error) => { 
+                    console.log(error) 
+                });
+
+            */
         })
         fileReader.readAsArrayBuffer(this.state.file)
         event.target.reset()
